@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "include/problem2.hpp"
+#include "../include/problem2.hpp"
 using namespace std;
 
 template <std::size_t N>
