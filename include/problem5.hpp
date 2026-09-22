@@ -1,6 +1,6 @@
 #include <vector>
-#ifndef PROBLEM1_H
-#define PROBLEM1_H
+#ifndef PROBLEM5_H
+#define PROBLEM5_H
 
 struct Interval {
     int start;

@@ -3,6 +3,8 @@
 #include "../include/problem2.hpp"
 #include "../include/problem3.hpp"
 #include "../include/problem4.hpp"
+#include "../include/problem5.hpp"
+#include "../include/problem6.hpp"
 using namespace std;
 
 int main() {
