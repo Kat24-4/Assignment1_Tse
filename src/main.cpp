@@ -5,6 +5,7 @@
 #include "../include/problem4.hpp"
 #include "../include/problem5.hpp"
 #include "../include/problem6.hpp"
+#include "../include/problem7.hpp"
 using namespace std;
 
 int main() {
