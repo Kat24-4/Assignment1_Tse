@@ -1,22 +1,21 @@
-#include <iostream>
 #include <vector>
 #include <algorithm>
-#include <include/problem1.hpp>
+#include "include/problem1.hpp"
 using namespace std;
 
-std::vector<Interval> problem1(Interval intervals[], int size) {
+template <std::size_t N>
+std::vector<Interval> problem1(Interval (&intervals)[N]) {
     std::vector<Interval> sorted;
     
-    if (size == 0) {
+    if (N == 0) {
         return sorted;
     }
 
-    int n = sizeof(intervals) / sizeof(intervals[0]);
-    std::stable_sort(intervals, intervals + n);
+    std::stable_sort(intervals[0], intervals[N]);
 
     sorted.push_back(intervals[0]);
 
-    for(int i = 1; i < size - 1; i++) {
+    for (int i = 1; i < N - 1; i++) {
         if (sorted.back().end >= intervals[i].start) {
             if (sorted.back().end < intervals[i].end) {
                 sorted.back().end = intervals[i].end;
