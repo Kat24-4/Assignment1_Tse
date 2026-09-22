@@ -12,6 +12,6 @@ struct Interval {
 };
 
 template <std::size_t N>
-std::vector<Interval> problem1(Interval (&intervals)[N]);
+bool problem5(Interval (&intervals)[N]);
 
 #endif
