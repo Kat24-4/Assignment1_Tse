@@ -47,5 +47,9 @@ std::string problem3(std::vector<int> vals) {
         final.append(std::to_string(vals[k]));
     }
 
+    if (std::stoi(final) == 0) {
+        final = "0";
+    }
+
     return final; 
 }

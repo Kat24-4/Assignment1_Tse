@@ -3,7 +3,7 @@
 using namespace std;
 
 template <std::size_t N>
-int problem9(int (&ints)[N]) {
+int problem9(int (&ints)[N], int k) {
     // if list is empty, return 0
     if (N == 0) {
         return 0;

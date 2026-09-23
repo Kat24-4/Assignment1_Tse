@@ -6,11 +6,13 @@
 #include "../include/problem4.h"
 using namespace std;
 
-std::vector<std::string> problem4(std::vector<std::string> words) {
+std::vector<std::vector<std::string>> problem4(std::vector<std::string> words) {
     // if given vector is empty, return the empty vector back 
+    std::vector<std::vector<std::string>> final;
+
     int n = words.size();
     if (n == 0) {
-        return words;
+        return final;
     }
 
     // make variables to track the keys and the hashmap itself 
@@ -54,9 +56,8 @@ std::vector<std::string> problem4(std::vector<std::string> words) {
     }
 
     // combine all of the anagram lists into a final vector to return 
-    std::vector<std::string> final;
     for(int j = 0; j < keys.size(); j++) {
-        final.insert(final.end(), map[keys[j]].begin(), map[keys[j]].end());
+        final.push_back(map[keys[j]]);
     }
 
     return final; 

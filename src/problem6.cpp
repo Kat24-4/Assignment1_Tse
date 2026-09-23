@@ -61,21 +61,29 @@ static void mergeSort(std::vector<Point> points, int left, int right) {
 
 // Problem 6 solved with a sorting based solution (modified merge sort)
 std::vector<Point> problem6Sort(std::vector<Point> points, int k) {
+    if (k == 0) {
+        return {};
+    }
+    
     int n = points.size(); 
-
-    // sort points 
-    mergeSort(points, 0, n - 1);
 
     // if the number of requested points is equal to or larger than the list, return the whole list 
     if (n <= k) {
         return points;
     }
 
+    // sort points 
+    mergeSort(points, 0, n - 1);
+
     return std::vector<Point>(points.begin(), points.begin() + k);
 }
 
 // Problem 6 solved with a heap based solution
 std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
+    if (k == 0) {
+        return {};
+    }
+
     int n = points.size();
 
     // if the number of requested points is equal to or larger than the list, return the whole list 
