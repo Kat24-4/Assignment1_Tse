@@ -2,6 +2,7 @@
 #include "../include/problem10.hpp"
 using namespace std;
 
+// modified merge sort to count inversions
 template <std::size_t N>
 static int merge(int (&vals)[N], int left, int mid, int right) {
     int n1 = mid - left + 1;
@@ -23,10 +24,11 @@ static int merge(int (&vals)[N], int left, int mid, int right) {
         if (ltemp[i] <= rtemp[j]) {
             vals[k] = ltemp[i];
             i++;
-        } else {
+        } else { 
             vals[k] = rtemp[j];
             j++;
-            invCount++;
+            // since we are merging left and right halves, we can count inversions for the rest of the left half when the right half is smaller
+            invCount += (n1 - i); 
         }
         
         k++;
@@ -44,6 +46,7 @@ static int merge(int (&vals)[N], int left, int mid, int right) {
     return invCount; 
 }
 
+// modified merge that also returns inversion count calculations 
 template <std::size_t N>
 static int mergeCount(int (&vals)[N], int left, int right) {
     invCount = 0;
@@ -62,6 +65,7 @@ static int mergeCount(int (&vals)[N], int left, int right) {
 
 template <std::size_t N>
 int problem10(int (&vals)[N]) {
+    // if the list is empty return 0
     if (N == 0) {
         return 0;
     }

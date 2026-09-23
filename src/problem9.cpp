@@ -4,6 +4,7 @@ using namespace std;
 
 template <std::size_t N>
 int problem9(int (&ints)[N]) {
+    // if list is empty, return 0
     if (N == 0) {
         return 0;
     }
@@ -11,9 +12,10 @@ int problem9(int (&ints)[N]) {
     int final = 0;
     int maxIndex, minIndex;
     int temp;
-    if (k < N) {
-        for (int i = 0; i < k; i++) {
+    if (k < N) { // only traverse if k is not larger than the size of the array
+        for (int i = 0; i < k; i++) { // loop until you found the kth-largest element 
             maxIndex = i;
+            // find max index and begin sorting the list 
             for (int j = i + 1; j < N; j++) {
                 if (ints[j] > ints[maxIndex]) {
                     maxIndex = j;
@@ -24,15 +26,15 @@ int problem9(int (&ints)[N]) {
             ints[i] = ints[maxIndex];
             ints[maxIndex] = temp; 
             final = ints[i];
-        } else {
-            minIndex = 0;
-            for (int z = 1; z < N; z++) {
-                if (ints[z] < ints[minIndex]) {
-                    minIndex = z;
-                }
-            }
-            final = ints[minIndex];
         }
+    } else { // if k is larger or equal to the size of the given array, return the minimum value 
+        minIndex = 0;
+        for (int z = 1; z < N; z++) {
+            if (ints[z] < ints[minIndex]) {
+                minIndex = z;
+            }
+        }
+        final = ints[minIndex];
     }
 
     return final; 

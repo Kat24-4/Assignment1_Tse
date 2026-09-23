@@ -2,6 +2,7 @@
 #include "../include/problem6.hpp"
 using namespace std;
 
+// modified merge sort 
 static void merge(std::vector<Point> points, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -19,6 +20,7 @@ static void merge(std::vector<Point> points, int left, int mid, int right) {
     int ldist, rdist; 
 
     while ((i < n1) && (j < n2)) {
+        // calculate distance from origin to use for comparison (x^2 + y^2)
         ldist = (ltemp[i].x * ltemp[i].x) + (ltemp[i].y * ltemp[i].y);
         rdist = (rtemp[j].x * rtemp[j].x) + (rtemp[j].y * rtemp[j].y);
 
@@ -57,10 +59,14 @@ static void mergeSort(std::vector<Point> points, int left, int right) {
     merge(points, left, mid, right);
 }
 
+// Problem 6 solved with a sorting based solution (modified merge sort)
 std::vector<Point> problem6Sort(std::vector<Point> points, int k) {
     int n = points.size(); 
+
+    // sort points 
     mergeSort(points, 0, n - 1);
 
+    // if the number of requested points is equal to or larger than the list, return the whole list 
     if (n <= k) {
         return points;
     }
@@ -68,22 +74,27 @@ std::vector<Point> problem6Sort(std::vector<Point> points, int k) {
     return std::vector<Point>(points.begin(), points.begin() + k);
 }
 
+// Problem 6 solved with a heap based solution
 std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
     int n = points.size();
 
+    // if the number of requested points is equal to or larger than the list, return the whole list 
     if (n <= k) {
         return points;
     }
 
+    // initalize the min heap and populate it with the points given 
     std::vector<Point> heap = {points[0]};
     int index, currentDist, parentDist; 
     Point temp;
     for (int i = 1; i < n; i++) {
         heap.push_back(points[i]);
         index = heap.size() - 1;
+        // calculate the distance from origin to use for comparison 
         currentDist = (heap[index].x * heap[index].x) + (heap[index].y * heap[index].y);
         parentDist = (heap[(index - 1) / 2].x * heap[(index - 1) / 2].x) + (heap[(index - 1) / 2].y * heap[(index - 1) / 2].y);
 
+        // while the parent node is larger than the current node, move it up 
         while ((index > 0) && (currentDist < parentDist)) {
             temp = heap[index];
             heap[index] = heap[(index - 1) / 2];
@@ -99,6 +110,7 @@ std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
     std::vector<Point> final;
     bool isFixed;
     int left, right, min, lDist, rDist, minDist;
+    // once the heap is made, pop off k values to return and re-heapify the min heap
     while (final.size() < k) {
         final.push_back(heap[0]);
         heap[0] = heap[h - 1];
@@ -119,6 +131,7 @@ std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
             if ((right < h) && (rDist < minDist)) {
                 min = right; 
             }
+            
             if (min != index) {
                 temp = heap[min];
                 heap[min] = heap[index];
