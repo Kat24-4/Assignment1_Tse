@@ -1,5 +1,5 @@
 #include <vector>
-#include "../include/problem9.hpp"
+#include "../include/problem9.h"
 using namespace std;
 
 template <std::size_t N>

@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-#include "../include/problem3.hpp"
+#include "../include/problem3.h"
 using namespace std;
 
 std::string problem3(std::vector<int> vals) {

@@ -3,7 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
-#include "../include/problem4.hpp"
+#include "../include/problem4.h"
 using namespace std;
 
 std::vector<std::string> problem4(std::vector<std::string> words) {

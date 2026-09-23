@@ -1,5 +1,5 @@
 #include <vector>
-#include "../include/problem6.hpp"
+#include "../include/problem6.h"
 using namespace std;
 
 // modified merge sort 

@@ -1,5 +1,5 @@
 #include <vector>
-#include "../include/problem8.hpp"
+#include "../include/problem8.h"
 using namespace std;
 
 // function to merge two sorted arrays into a single sorted array 

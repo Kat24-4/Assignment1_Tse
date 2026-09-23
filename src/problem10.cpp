@@ -1,5 +1,5 @@
 #include <vector>
-#include "../include/problem10.hpp"
+#include "../include/problem10.h"
 using namespace std;
 
 // modified merge sort to count inversions

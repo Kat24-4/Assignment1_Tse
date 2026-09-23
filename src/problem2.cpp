@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "../include/problem2.hpp"
+#include "../include/problem2.h"
 using namespace std;
 
 // Problem 2 solved with a counting based solution

@@ -1,6 +1,6 @@
 #include <vector>
 #include <algorithm>
-#include "../include/problem5.hpp"
+#include "../include/problem5.h"
 using namespace std;
 
 template <std::size_t N>
