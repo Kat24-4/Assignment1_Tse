@@ -2,6 +2,7 @@
 #ifndef PROBLEM7_H
 #define PROBLEM7_H
 
+// custom struct to store value and count pairs 
 struct CountPair {
     int value;
     int count;

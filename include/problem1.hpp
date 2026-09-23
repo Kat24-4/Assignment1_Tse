@@ -2,6 +2,7 @@
 #ifndef PROBLEM1_H
 #define PROBLEM1_H
 
+// custom struct for intervals that have a start and end value 
 struct Interval {
     int start;
     int end;

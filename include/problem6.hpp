@@ -2,6 +2,7 @@
 #ifndef PROBLEM6_H
 #define PROBLEM6_H
 
+// custom struct for a point pair (x, y)
 struct Point {
     int x;
     int y;
