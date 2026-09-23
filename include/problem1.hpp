@@ -10,6 +10,10 @@ struct Interval {
     bool operator<(const Interval& other) const {
         return start < other.start;
     }
+
+    bool operator==(const Interval& other) const {
+        return (start == other.start && end == other.end);
+    }
 };
 
 template <std::size_t N>
