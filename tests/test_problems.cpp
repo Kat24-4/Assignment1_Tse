@@ -24,7 +24,7 @@ void testProblem1() {
     std::cout << "-----------------\n";
 
     //Test 1
-    Interval intvs1[4] = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+    Interval intvs1[5] = {{1, 3}, {1, 3}, {2, 6}, {8, 10}, {15, 18}};
     std::vector<Interval> expt1 = {{1, 6}, {8, 10}, {15, 18}}; 
 
     auto start = std::chrono::high_resolution_clock::now();
