@@ -1,4 +1,4 @@
-#include<algorithm>
+#include <algorithm>
 #ifndef PROBLEM2_H
 #define PROBLEM2_H
 
