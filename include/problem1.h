@@ -33,9 +33,7 @@ std::vector<Interval> problem1(std::array<Interval, N>& intervals) {
                 sorted.push_back(intervals[i]);
         }
     }
-
     return sorted;
-
 }
 
 #endif
