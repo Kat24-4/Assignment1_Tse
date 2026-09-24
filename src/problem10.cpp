@@ -4,7 +4,7 @@ using namespace std;
 
 
 // modified merge sort to count inversions
-static int merge(int vals[], int N, int left, int mid, int right) {
+static int merge(int vals[], int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
@@ -59,7 +59,7 @@ static int mergeCount(int vals[], int N, int left, int right) {
     int mid = left + (right - left) / 2;
     invCount += mergeCount(vals, N, left, mid);
     invCount += mergeCount(vals, N, mid + 1, right);
-    invCount += merge(vals, N, left, mid, right);
+    invCount += merge(vals, left, mid, right);
     
     return invCount;
 }
