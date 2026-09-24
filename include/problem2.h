@@ -87,4 +87,8 @@ void problem2Dutch(std::array<int, N>& items) {
     }
 }
 
+void problem2Count(int items[], int N);
+
+void problem2Dutch(int items[], int N);
+
 #endif

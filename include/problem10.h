@@ -76,4 +76,6 @@ int problem10(std::array<int, N>& vals) {
     return mergeCount(vals, 0, static_cast<int>(N) - 1);
 }
 
+int problem10(int vals[], int N);
+
 #endif

@@ -3,16 +3,14 @@
 #include "../include/problem7.h"
 using namespace std;
 
-/*
-template <std::size_t N>
-std::vector<int> problem7(std::array<int, N>& nums, int k) {
+std::vector<int> problem7(int nums[], int N, int k) {
     // if the list is empty, reutrn the list back 
     if (N == 0) {
         return {};
     }
 
     // sort list to make calculating frequency easier 
-    std::sort(nums.begin(), nums.end());
+    std::sort(nums, nums + N);
 
     int key = nums[0];
     int count = 1; 
@@ -46,4 +44,3 @@ std::vector<int> problem7(std::array<int, N>& nums, int k) {
 
     return final; 
 }
-*/

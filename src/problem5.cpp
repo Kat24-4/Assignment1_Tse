@@ -3,16 +3,15 @@
 #include "../include/problem5.h"
 using namespace std;
 
-/*
-template <std::size_t N>
-bool problem5(std::array<Interval, N>& intervals) {
+
+bool problem5(Interval intervals[], int N) {
     // if list is empty, then return true (can attend all meetings)
     if (N == 0) {
         return true;
     }
 
     // sort intervals by start time (struct has custom sort)
-    std::stable_sort(intervals.begin(), intervals.end());
+    std::stable_sort(intervals, intervals + N);
 
     // check if any intervals overlap and if so, return false (cannot attend all meetings)
     for (int i = 0; i < static_cast<int>(N) - 1; i++) {
@@ -25,4 +24,3 @@ bool problem5(std::array<Interval, N>& intervals) {
 
     return true;
 }
-*/

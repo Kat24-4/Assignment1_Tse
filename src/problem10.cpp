@@ -2,10 +2,9 @@
 #include "../include/problem10.h"
 using namespace std;
 
-/*
+
 // modified merge sort to count inversions
-template <std::size_t N>
-static int merge(std::array<int, N>& vals, int left, int mid, int right) {
+static int merge(int vals[], int N, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
@@ -50,8 +49,7 @@ static int merge(std::array<int, N>& vals, int left, int mid, int right) {
 }
 
 // modified merge that also returns inversion count calculations 
-template <std::size_t N>
-static int mergeCount(std::array<int, N>& vals, int left, int right) {
+static int mergeCount(int vals[], int N, int left, int right) {
     int invCount = 0;
 
     if (left >= right) {
@@ -59,20 +57,19 @@ static int mergeCount(std::array<int, N>& vals, int left, int right) {
     }
 
     int mid = left + (right - left) / 2;
-    invCount += mergeCount(vals, left, mid);
-    invCount += mergeCount(vals, mid + 1, right);
-    invCount += merge(vals, left, mid, right);
+    invCount += mergeCount(vals, N, left, mid);
+    invCount += mergeCount(vals, N, mid + 1, right);
+    invCount += merge(vals, N, left, mid, right);
     
     return invCount;
 }
+ 
 
-template <std::size_t N>
-int problem10(std::array<int, N>& vals) {
+int problem10(int vals[], int N) {
     // if the list is empty return 0
     if (N == 0) {
         return 0;
     }
 
-    return mergeCount(vals, 0, static_cast<int>(N) - 1);
+    return mergeCount(vals, N, 0, static_cast<int>(N) - 1);
 }
-*/

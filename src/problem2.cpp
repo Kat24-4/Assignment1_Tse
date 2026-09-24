@@ -3,9 +3,8 @@
 using namespace std;
 
 
-/* Problem 2 solved with a counting based solution 
-template <std::size_t N>
-void problem2Count(std::array<int, N>& items) {
+// Problem 2 solved with a counting based solution 
+void problem2Count(int items[], int N) {
     // if given array is empty, exit function
     if (N == 0) {
         return;
@@ -13,7 +12,7 @@ void problem2Count(std::array<int, N>& items) {
 
     // make a copy of the array to use as reference 
     int temp[N];
-    std::copy(std::begin(items), std::end(items), temp);
+    std::copy(items, items + N, temp);
 
     int count[3] = {0, 0, 0}; // store counts for each category
 
@@ -49,11 +48,10 @@ void problem2Count(std::array<int, N>& items) {
         }
     }
 }
-*/
 
-/* Problem 2 solved with the One-pass Dutch National Flag method
-template <std::size_t N>
-void problem2Dutch(std::array<int, N>& items) {
+
+// Problem 2 solved with the One-pass Dutch National Flag method
+void problem2Dutch(int items[], int N) {
     // if given array is empty, exit function 
     if (N == 0) {
         return;
@@ -89,4 +87,3 @@ void problem2Dutch(std::array<int, N>& items) {
         }
     }
 }
-*/

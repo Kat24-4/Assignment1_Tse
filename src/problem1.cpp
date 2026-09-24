@@ -3,9 +3,7 @@
 #include "../include/problem1.h"
 using namespace std;
 
-/*
-template <std::size_t N>
-std::vector<Interval> problem1(std::array<Interval, N>& intervals) {
+std::vector<Interval> problem1(Interval intervals[], int N) {
     std::vector<Interval> sorted;
     
     // if array is empty, return empty vector
@@ -14,7 +12,7 @@ std::vector<Interval> problem1(std::array<Interval, N>& intervals) {
     }
 
     // utilize built in sort to sort given array (struct has custom sorting)
-    std::stable_sort(intervals.begin(), intervals.end());
+    std::stable_sort(intervals, intervals + N);
 
     // add first interval to the final vector 
     sorted.push_back(intervals[0]);
@@ -33,4 +31,3 @@ std::vector<Interval> problem1(std::array<Interval, N>& intervals) {
     }
     return sorted;
 }
-*/

@@ -28,4 +28,6 @@ bool problem5(std::array<Interval, N>& intervals) {
     return true;
 }
 
+bool problem5(Interval intervals[], int N);
+
 #endif

@@ -36,4 +36,6 @@ std::vector<Interval> problem1(std::array<Interval, N>& intervals) {
     return sorted;
 }
 
+std::vector<Interval> problem1(Interval* intervals, int N); 
+
 #endif

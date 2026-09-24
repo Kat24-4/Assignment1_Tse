@@ -57,4 +57,6 @@ std::vector<int> problem7(std::array<int, N>& nums, int k) {
     return final; 
 }
 
+std::vector<int> problem7(int nums[], int N, int k);
+
 #endif

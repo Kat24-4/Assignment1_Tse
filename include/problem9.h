@@ -41,4 +41,6 @@ int problem9(std::array<int, N>& ints, int k) {
     return final; 
 }
 
+int problem9(int ints[], int N, int k);
+
 #endif
