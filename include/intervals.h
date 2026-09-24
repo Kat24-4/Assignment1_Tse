@@ -1,3 +1,4 @@
+#include <iostream>
 #ifndef INTERVALS_H
 #define INTERVALS_H
 
@@ -14,5 +15,10 @@ struct Interval {
         return (start == other.start && end == other.end);
     }
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Interval& i) {
+    os << "{" << i.start << ", " << i.end << "}";
+    return os;
+}
 
 #endif

@@ -24,7 +24,7 @@ void testProblem1() {
     std::cout << "-----------------\n";
 
     //Test 1
-    Interval intvs1[5] = {{1, 3}, {1, 3}, {2, 6}, {8, 10}, {15, 18}};
+    std::array<Interval, 5> intvs1 = {Interval{1, 3}, Interval{1, 3}, Interval{2, 6}, Interval{8, 10}, Interval{15, 18}};
     std::vector<Interval> expt1 = {{1, 6}, {8, 10}, {15, 18}}; 
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -32,12 +32,12 @@ void testProblem1() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {1, 3}, {2, 6}, {8, 10}, {15, 18}";
+    std::cout << "Input 1: {1, 3}, {2, 6}, {8, 10}, {15, 18}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt1, res1);
 
     //Test 2
-    Interval intvs2[5] = {{5, 10}, {1, 2}, {9, 15}, {2, 3}, {15, 20}};
+    std::array<Interval, 5> intvs2 = {Interval{5, 10}, Interval{1, 2}, Interval{9, 15}, Interval{2, 3}, Interval{15, 20}};
     std::vector<Interval> expt2 = {{1, 3}, {5, 20}}; 
 
     start = std::chrono::high_resolution_clock::now();
@@ -45,12 +45,12 @@ void testProblem1() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {5, 10}, {1, 2}, {9, 15}, {2, 3}, {15, 20}";
+    std::cout << "Input 2: {5, 10}, {1, 2}, {9, 15}, {2, 3}, {15, 20}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt2, res2);
 
     //Test 3
-    Interval intvs3[1] = {};
+    std::array<Interval, 0> intvs3 = {};
     std::vector<Interval> expt3 = {}; 
 
     start = std::chrono::high_resolution_clock::now();
@@ -58,7 +58,7 @@ void testProblem1() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {}";
+    std::cout << "Input 3: {}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt3, res3);
     std::cout << "\n";
@@ -69,18 +69,18 @@ void testProblem2() {
     std::cout << "-----------------\n";
 
     // Test 1
-    int ints1C[6] = {2, 0, 2, 1, 1, 0};
-    int ints1D[6] = {2, 0, 2, 1, 1, 0};
-    int expt1[6] = {0, 0, 1, 1, 2, 2};
+    std::array<int, 6> ints1C = {2, 0, 2, 1, 1, 0};
+    std::array<int, 6> ints1D = {2, 0, 2, 1, 1, 0};
+    std::array<int, 6> expt1 = {0, 0, 1, 1, 2, 2};
 
     auto start = std::chrono::high_resolution_clock::now();
     problem2Count(ints1C);
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {2, 0, 2, 1, 1, 0}";
+    std::cout << "Input 1: {2, 0, 2, 1, 1, 0}\n";
     std::cout << "Count Execution Time: " << duration.count() << "ms" << std::endl;
-    CHECK_ARRAY_EQ(expt1, ints1C);
+    CHECK_VEC_EQ(expt1, ints1C);
 
     start = std::chrono::high_resolution_clock::now();
     problem2Dutch(ints1D);
@@ -88,21 +88,21 @@ void testProblem2() {
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
     std::cout << "One-Pass Dutch National Flag Execution Time: " << duration.count() << "ms" << std::endl;
-    CHECK_ARRAY_EQ(expt1, ints1D);
+    CHECK_VEC_EQ(expt1, ints1D);
 
     // Test 2
-    int ints2C[1] = {};
-    int ints2D[1] = {};
-    int expt2[1] = {};
+    std::array<int, 0> ints2C = {};
+    std::array<int, 0> ints2D = {};
+    std::array<int, 0> expt2 = {};
 
     start = std::chrono::high_resolution_clock::now();
     problem2Count(ints2C);
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {}";
+    std::cout << "Input 2: {}\n";
     std::cout << "Count Execution Time: " << duration.count() << "ms" << std::endl;
-    CHECK_ARRAY_EQ(expt2, ints2C);
+    CHECK_VEC_EQ(expt2, ints2C);
 
     start = std::chrono::high_resolution_clock::now();
     problem2Dutch(ints2D);
@@ -110,21 +110,21 @@ void testProblem2() {
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
     std::cout << "One-Pass Dutch National Flag Execution Time: " << duration.count() << "ms" << std::endl;
-    CHECK_ARRAY_EQ(expt2, ints2D);
+    CHECK_VEC_EQ(expt2, ints2D);
 
     // Test 3
-    int ints3C[3] = {1, 1, 1};
-    int ints3D[3] = {1, 1, 1};
-    int expt3[3] = {1, 1, 1};
+    std::array<int, 3> ints3C = {1, 1, 1};
+    std::array<int, 3> ints3D = {1, 1, 1};
+    std::array<int, 3> expt3 = {1, 1, 1};
 
     start = std::chrono::high_resolution_clock::now();
     problem2Count(ints3C);
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {1, 1, 1}";
+    std::cout << "Input 3: {1, 1, 1}\n";
     std::cout << "Count Execution Time: " << duration.count() << "ms" << std::endl;
-    CHECK_ARRAY_EQ(expt3, ints3C);
+    CHECK_VEC_EQ(expt3, ints3C);
 
     start = std::chrono::high_resolution_clock::now();
     problem2Dutch(ints3D);
@@ -132,7 +132,7 @@ void testProblem2() {
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
     std::cout << "One-Pass Dutch National Flag Execution Time: " << duration.count() << "ms" << std::endl;
-    CHECK_ARRAY_EQ(expt3, ints3D);
+    CHECK_VEC_EQ(expt3, ints3D);
     std::cout << "\n";
 }
 
@@ -149,7 +149,7 @@ void testProblem3() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {3, 30, 34, 5, 9}";
+    std::cout << "Input 1: {3, 30, 34, 5, 9}\n";
     std::cout << "Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt1, res1);
 
@@ -162,7 +162,7 @@ void testProblem3() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {}";
+    std::cout << "Input 2: {}\n";
     std::cout << "Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt2, res2);
 
@@ -171,11 +171,11 @@ void testProblem3() {
     std::string expt3 = "0";
 
     start = std::chrono::high_resolution_clock::now();
-    std::string res3 = problem3(vals1);
+    std::string res3 = problem3(vals3);
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {0, 0, 0, 0}";
+    std::cout << "Input 3: {0, 0, 0, 0}\n";
     std::cout << "Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt3, res3);
     std::cout << "\n";
@@ -194,7 +194,7 @@ void testProblem4() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"}";
+    std::cout << "Input 1: {\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"}\n";
     std::cout << "Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt1, res1);
 
@@ -207,7 +207,7 @@ void testProblem4() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {\"\", \"\"}";
+    std::cout << "Input 2: {\"\", \"\"}\n";
     std::cout << "Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt2, res2);
 
@@ -215,12 +215,12 @@ void testProblem4() {
     std::vector<std::string> words3 = {"ab", "ba", "abc"};
     std::vector<std::vector<std::string>> expt3 = {{"ab", "ba"}, {"abc"}};
 
-    auto start = std::chrono::high_resolution_clock::now();
-    std::vector<std::vector<std::string>> res3 = problem4(words1);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    start = std::chrono::high_resolution_clock::now();
+    std::vector<std::vector<std::string>> res3 = problem4(words3);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {\"ab\", \"ba\", \"abc\"}";
+    std::cout << "Input 3: {\"ab\", \"ba\", \"abc\"}\n";
     std::cout << "Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt3, res3);
     std::cout << "\n";
@@ -231,7 +231,7 @@ void testProblem5() {
     std::cout << "-----------------\n";
 
     //Test 1
-    Interval intvs1[3] = {{0, 24}, {5, 10}, {15, 20}};
+    std::array<Interval, 3> intvs1 = {Interval{0, 24}, Interval{5, 10}, Interval{15, 20}};
     bool expt1 = false; 
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -239,12 +239,12 @@ void testProblem5() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {0, 24}, {5, 10}, {15, 20}";
+    std::cout << "Input 1: {0, 24}, {5, 10}, {15, 20}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt1, res1);
 
     //Test 2
-    Interval intvs2[1] = {};
+    std::array<Interval, 0> intvs2 = {};
     bool expt2 = true; 
 
     start = std::chrono::high_resolution_clock::now();
@@ -252,12 +252,12 @@ void testProblem5() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {}";
+    std::cout << "Input 2: {}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt2, res2);
 
     //Test 3
-    Interval intvs3[2] = {{5, 10}, {1, 5}};
+    std::array<Interval, 2> intvs3 = {Interval{5, 10}, Interval{1, 5}};
     bool expt3 = true; 
 
     start = std::chrono::high_resolution_clock::now();
@@ -265,7 +265,7 @@ void testProblem5() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {5, 10}, {1, 5}";
+    std::cout << "Input 3: {5, 10}, {1, 5}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt3, res3);
     std::cout << "\n";
@@ -286,7 +286,7 @@ void testProblem6() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {1, 3}, {-2, 2}, {5, 8}, {0, 1}";
+    std::cout << "Input 1: {1, 3}, {-2, 2}, {5, 8}, {0, 1}\n";
     std::cout << "Sort Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt1, res1S);
 
@@ -304,12 +304,12 @@ void testProblem6() {
     std::vector<Point> points2H = {{3, 3}, {5, -1}, {-2, 4}};
     std::vector<Point> expt2 = {{3, 3}, {5, -1}, {-2, 4}};
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     std::vector<Point> res2S = problem6Sort(points2S, k);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {3, 3}, {5, -1}, {-2, 4}";
+    std::cout << "Input 2: {3, 3}, {5, -1}, {-2, 4}\n";
     std::cout << "Sort Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt2, res2S);
 
@@ -332,7 +332,7 @@ void testProblem6() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {1, 1}";
+    std::cout << "Input 3: {1, 1}\n";
     std::cout << "Sort Execution Time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt3, res3S);
 
@@ -352,7 +352,7 @@ void testProblem7() {
 
     //Test 1
     int k = 2;
-    int nums1[6] = {1, 2, 1, 1, 3, 2};
+    std::array<int, 6> nums1 = {1, 2, 1, 1, 3, 2};
     std::vector<int> expt1 = {1, 2}; 
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -360,35 +360,35 @@ void testProblem7() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {1, 2, 1, 1, 3, 2}";
+    std::cout << "Input 1: {1, 2, 1, 1, 3, 2}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt1, res1);
 
     //Test 2
     k = 3;
-    int nums2[7] = {4, 5, 6, 6, 5, 4, 7};
+    std::array<int, 7> nums2 = {4, 5, 6, 6, 5, 4, 7};
     std::vector<int> expt2 = {4, 5, 6}; 
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     std::vector<int> res2 = problem7(nums2, k);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {4, 5, 6, 6, 5, 4, 7}";
+    std::cout << "Input 2: {4, 5, 6, 6, 5, 4, 7}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt2, res2);
 
     //Test 3
     k = 1;
-    int nums3[1] = {};
+    std::array<int, 0> nums3 = {};
     std::vector<int> expt3 = {}; 
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     std::vector<int> res3 = problem7(nums3, k);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {}";
+    std::cout << "Input 3: {}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt3, res3);
     std::cout << "\n";
@@ -407,7 +407,7 @@ void testProblem8() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {1, 4, 7}, {2, 5, 8, 9}, {3,6}";
+    std::cout << "Input 1: {1, 4, 7}, {2, 5, 8, 9}, {3,6}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt1, res1);
 
@@ -415,12 +415,12 @@ void testProblem8() {
     std::vector<std::vector<int>> arrs2 = {};
     std::vector<int> expt2 = {};
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     std::vector<int> res2 = problem8(arrs2);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {}";
+    std::cout << "Input 2: {}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt2, res2);
 
@@ -428,12 +428,12 @@ void testProblem8() {
     std::vector<std::vector<int>> arrs3 = {{2, 2, 3}, {2, 2}, {1}};
     std::vector<int> expt3 = {1, 2, 2, 2, 2, 3};
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     std::vector<int> res3 = problem8(arrs3);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {2, 2, 3}, {2, 2}, {1}";
+    std::cout << "Input 3: {2, 2, 3}, {2, 2}, {1}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_VEC_EQ(expt3, res3);
     std::cout << "\n";
@@ -445,7 +445,7 @@ void testProblem9() {
 
     //Test 1
     int k = 2;
-    int nums1[6] = {3, 2, 1, 5, 6, 4};
+    std::array<int, 6> nums1 = {3, 2, 1, 5, 6, 4};
     int expt1 = 5; 
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -453,13 +453,13 @@ void testProblem9() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {3, 2, 1, 5, 6, 4}";
+    std::cout << "Input 1: {3, 2, 1, 5, 6, 4}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt1, res1);
 
     //Test 2
     k = 3;
-    int nums2[6] = {3, 3, 3, 2, 1, 0};
+    std::array<int, 6> nums2 = {3, 3, 3, 2, 1, 0};
     int expt2 = 3; 
 
     start = std::chrono::high_resolution_clock::now();
@@ -467,13 +467,13 @@ void testProblem9() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {3, 3, 3, 2, 1, 0}";
+    std::cout << "Input 2: {3, 3, 3, 2, 1, 0}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt2, res2);
 
     //Test 3
     k = 5;
-    int nums3[4] = {3, 7, 1, 11};
+    std::array<int, 4> nums3 = {3, 7, 1, 11};
     int expt3 = 1; 
 
     start = std::chrono::high_resolution_clock::now();
@@ -481,7 +481,7 @@ void testProblem9() {
     end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {3, 7, 1, 11}";
+    std::cout << "Input 3: {3, 7, 1, 11}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt3, res3);
     std::cout << "\n";
@@ -492,7 +492,7 @@ void testProblem10() {
     std::cout << "-----------------\n";
 
     //Test 1
-    int nums1[4] = {8, 4, 2, 1};
+    std::array<int, 4> nums1 = {8, 4, 2, 1};
     int expt1 = 6; 
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -500,33 +500,33 @@ void testProblem10() {
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 1: {8, 4, 2, 1}";
+    std::cout << "Input 1: {8, 4, 2, 1}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt1, res1);
 
     //Test 2
-    int nums2[5] = {2, 4, 1, 3, 5};
+    std::array<int, 5> nums2 = {2, 4, 1, 3, 5};
     int expt2 = 3; 
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     int res2 = problem10(nums2);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 2: {2, 4, 1, 3, 5}";
+    std::cout << "Input 2: {2, 4, 1, 3, 5}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt2, res2);
 
     //Test 3
-    int nums3[1] = {};
+    std::array<int, 0> nums3 = {};
     int expt3 = 0; 
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     int res3 = problem10(nums3);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-    std::cout << "Input 3: {}";
+    std::cout << "Input 3: {}\n";
     std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
     CHECK_EQ(expt3, res3);
     std::cout << "\n";

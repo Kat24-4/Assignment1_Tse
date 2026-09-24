@@ -1,13 +1,14 @@
 #include <vector>
+#include <algorithm>
 #include "../include/problem6.h"
 using namespace std;
 
 // modified merge sort 
-static void merge(std::vector<Point> points, int left, int mid, int right) {
+static void merge(std::vector<Point>& points, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    std::vector<Point> ltemp, rtemp;
+    std::vector<Point> ltemp(n1), rtemp(n2);
 
     for (int l = 0; l < n1; l++) {
         ltemp[l] = points[left + l];
@@ -48,7 +49,7 @@ static void merge(std::vector<Point> points, int left, int mid, int right) {
     }
 }
 
-static void mergeSort(std::vector<Point> points, int left, int right) {
+static void mergeSort(std::vector<Point>& points, int left, int right) {
     if (left >= right) {
         return; 
     }
@@ -109,7 +110,6 @@ std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
             heap[(index - 1) / 2] = temp;
 
             index = (index - 1) / 2;
-            currentDist = parentDist;
             parentDist = (heap[(index - 1) / 2].x * heap[(index - 1) / 2].x) + (heap[(index - 1) / 2].y * heap[(index - 1) / 2].y);
         }
     }
@@ -119,7 +119,8 @@ std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
     bool isFixed;
     int left, right, min, lDist, rDist, minDist;
     // once the heap is made, pop off k values to return and re-heapify the min heap
-    while (final.size() < k) {
+    int finalSize = final.size();
+    while (finalSize < k) {
         final.push_back(heap[0]);
         heap[0] = heap[h - 1];
         h--;
@@ -129,15 +130,19 @@ std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
             left = (2 * index) + 1;
             right = (2 * index) + 2;
             min = index; 
-            lDist = (heap[left].x * heap[left].x) + (heap[left].y * heap[left].y);
-            rDist = (heap[right].x * heap[right].x) + (heap[right].y * heap[right].y);
             minDist = (heap[min].x * heap[min].x) + (heap[min].y * heap[min].y);
 
-            if ((left < h) && (lDist < minDist)) {
-                min = left;
+            if (left < h)  {
+                lDist = (heap[left].x * heap[left].x) + (heap[left].y * heap[left].y);
+                if (lDist < minDist) {
+                    min = left;
+                }
             }
-            if ((right < h) && (rDist < minDist)) {
-                min = right; 
+            if (right < h) {
+                rDist = (heap[right].x * heap[right].x) + (heap[right].y * heap[right].y);
+                if (rDist < minDist) {
+                    min = right; 
+                }
             }
             
             if (min != index) {
@@ -149,6 +154,7 @@ std::vector<Point> problem6Heap(std::vector<Point> points, int k) {
                 isFixed = true; 
             }
         }
+        finalSize = final.size();
     }
     
     return final; 

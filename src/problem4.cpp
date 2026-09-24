@@ -24,12 +24,14 @@ std::vector<std::vector<std::string>> problem4(std::vector<std::string> words) {
     int m;
     bool wasAdded;
     std::string currentKey;
+    int keySize;
 
     for (int i = 0; i < n; i++) {
         currentWord = words[i];
+        chars.clear();
 
         // take the current word, ensure all letters are lowercase, and sort the letters to generate the anagram key 
-        std::copy(currentWord.begin(), currentWord.end(), chars);
+        std::copy(currentWord.begin(), currentWord.end(), std::back_inserter(chars));
         std::transform(chars.begin(), chars.end(), chars.begin(), [](unsigned char c) {
             return std::tolower(c);
         });
@@ -39,7 +41,8 @@ std::vector<std::vector<std::string>> problem4(std::vector<std::string> words) {
         wasAdded = false;
         currentKey.assign(chars.begin(), chars.end());
         // run through the list of keys to check if the key for the word exists in the hashmap already
-        while((m < keys.size()) && (wasAdded == false)) {
+        keySize = keys.size();
+        while((m < keySize) && (wasAdded == false)) {
             // if key already exists, add word to the array of anagrams 
             if ((currentKey.length() == keys[m].length()) && (currentKey == keys[m])) {
                 map[currentKey].push_back(currentWord);
@@ -52,11 +55,12 @@ std::vector<std::vector<std::string>> problem4(std::vector<std::string> words) {
         if(wasAdded == false) {
             map[currentKey] = {currentWord};
             keys.push_back(currentKey);
+            keySize = keys.size();
         }
     }
 
     // combine all of the anagram lists into a final vector to return 
-    for(int j = 0; j < keys.size(); j++) {
+    for(int j = 0; j < keySize; j++) {
         final.push_back(map[keys[j]]);
     }
 

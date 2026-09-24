@@ -20,6 +20,13 @@ std::string test_to_string(const T& val) {
 }
 
 // Overload for containers (vector, std::array, etc.)
+template <typename T, typename = void>
+struct has_ostream_op : std::false_type {};
+
+template <typename T>
+struct has_ostream_op<T, std::void_t<decltype(std::declval<std::ostream&>() << std::declval<const T&>())>>
+    : std::true_type {};
+
 template <typename T>
 std::string test_to_string_container(const T& val) {
     std::ostringstream oss;
@@ -27,7 +34,11 @@ std::string test_to_string_container(const T& val) {
     bool first = true;
     for (const auto& elem : val) {
         if (!first) oss << ", ";
-        oss << elem;
+        if constexpr (has_ostream_op<std::decay_t<decltype(elem)>>::value) {
+            oss << elem;
+        } else {
+            oss << test_to_string_container(elem);
+        }
         first = false;
     }
     oss << "}";
@@ -82,8 +93,8 @@ bool test_array_eq(const T (&a)[N], const T (&b)[N]) {
         if (!(va == vb)) { \
             g_tests_failed++; \
             std::cerr << "[FAIL] " << __FILE__ << ":" << __LINE__ \
-                      << " - expected " << test_to_string(vb) \
-                      << " but got " << test_to_string(va) << "\n"; \
+                      << " - expected " << test_to_string(va) \
+                      << " but got " << test_to_string(vb) << "\n"; \
         } else { \
             std::cout << "[PASS] " << __FILE__ << ":" << __LINE__ \
                        << " - " << #a << " == " << test_to_string(va) << "\n"; \
@@ -98,26 +109,11 @@ bool test_array_eq(const T (&a)[N], const T (&b)[N]) {
         if (!(va == vb)) { \
             g_tests_failed++; \
             std::cerr << "[FAIL] " << __FILE__ << ":" << __LINE__ << " - vectors differ\n"; \
-            std::cerr << "  expected: " << test_to_string_container(vb) << "\n"; \
-            std::cerr << "  actual:   " << test_to_string_container(va) << "\n"; \
+            std::cerr << "  expected: " << test_to_string_container(va) << "\n"; \
+            std::cerr << "  actual:   " << test_to_string_container(vb) << "\n"; \
         } else { \
             std::cout << "[PASS] " << __FILE__ << ":" << __LINE__ \
-                       << " - " << test_to_string_container(vb) << " == " << test_to_string_container(va) << "\n"; \
-        } \
-    } while (0)
-
-// Raw C-style array equality: int arr[N]
-#define CHECK_ARRAY_EQ(a, b) \
-    do { \
-        g_tests_run++; \
-        if (!test_array_eq((a), (b))) { \
-            g_tests_failed++; \
-            std::cerr << "[FAIL] " << __FILE__ << ":" << __LINE__ << " - arrays differ\n"; \
-            std::cerr << "  expected: " << test_to_string(b) << "\n"; \
-            std::cerr << "  actual:   " << test_to_string(a) << "\n"; \
-        } else { \
-            std::cout << "[PASS] " << __FILE__ << ":" << __LINE__ \
-                       << " - " << test_to_string(b) << " == " << test_to_string(a) << "\n"; \
+                       << " - " << test_to_string_container(va) << " == " << test_to_string_container(vb) << "\n"; \
         } \
     } while (0)
 

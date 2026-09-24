@@ -22,10 +22,10 @@ std::string problem3(std::vector<int> vals) {
             }
 
             // pull current and next value and create the two potential numers 
-            std:string first = std::to_string(vals[j]);
-            std:string second = std::to_string(vals[j + 1]);
-            std:string current = first + second;
-            std:string swapped = second + first;
+            std::string first = std::to_string(vals[j]);
+            std::string second = std::to_string(vals[j + 1]);
+            std::string current = first + second;
+            std::string swapped = second + first;
 
             // keep the order for whichever pair order creates the largest integer 
             if (std::stoi(swapped) > std::stoi(current)) {
