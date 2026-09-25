@@ -100,11 +100,7 @@ int main() {
             auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
             
             std::cout << "Result: ";
-            std::cout << "{";
-            for (std::size_t i = 0; i < res.size(); ++i) {
-            std::cout << res[i] << " ";
-            }
-            std::cout << "}" << endl;
+            std::cout << res << endl;
             std::cout << "Execution Time: " << duration.count() << "ms" << std::endl;
             break;
         }
@@ -153,7 +149,13 @@ int main() {
             auto end = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-            std::cout << "Result: " << res << endl;
+            std::cout << "Result: "; 
+            if (res) {
+                std::cout << "true";
+            } else {
+                std::cout << "false";
+            }
+            std::cout << endl;
             std::cout << "Execution time: " << duration.count() << "ms" << std::endl;
             break;
         }
@@ -167,6 +169,9 @@ int main() {
             }
 
             std::vector<Point> pointsH = pointsS;
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
             int k; 
             std::cout << "Please enter how many points to return: " << endl; 
@@ -207,8 +212,11 @@ int main() {
                 nums.push_back(temp);
             }
 
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
             int k; 
-            std::cout << "Please enter how many points to return: " << endl; 
+            std::cout << "Please enter how many values to return: " << endl; 
             std::cin >> k;
 
             std::cout << "Running Problem 7..." << endl;
@@ -276,8 +284,11 @@ int main() {
                 nums.push_back(temp);
             }
 
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
             int k; 
-            std::cout << "Please enter how many points to return: " << endl; 
+            std::cout << "Please enter what largest value you would like (ex. 2 -> 2nd largest): " << endl; 
             std::cin >> k;
 
             std::cout << "Running Problem 9..." << endl;
@@ -299,10 +310,6 @@ int main() {
             while (std::cin >> temp) {
                 nums.push_back(temp);
             }
-
-            int k; 
-            std::cout << "Please enter how many points to return: " << endl; 
-            std::cin >> k;
 
             std::cout << "Running Problem 10..." << endl;
             auto start = std::chrono::high_resolution_clock::now();

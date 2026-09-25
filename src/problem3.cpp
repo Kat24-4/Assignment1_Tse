@@ -47,7 +47,7 @@ std::string problem3(std::vector<int> vals) {
         final.append(std::to_string(vals[k]));
     }
 
-    if (std::stoi(final) == 0) {
+    if (final.find_first_not_of('0') == std::string::npos) {
         final = "0";
     }
 
